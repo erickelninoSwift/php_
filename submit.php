@@ -1,14 +1,22 @@
 <?php 
 session_start();
 
-$username = $_GET['username'] ??'';
-$password = $_GET['password'] ??'';
+$username = htmlspecialchars(trim($_GET['username']));
+$password = htmlspecialchars(trim($_GET['password']));
 
-if(!empty($username) && !empty($password)){
+
+if($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    // get method for login in 
+
+    if(!empty($username) && !empty($password)){
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
+
+    //
+
+    print_r($_SESSION);
+
+    echo "username : {$username} and password : {$password}";
+  }
 }
-
-print_r($_SESSION);
-
-echo "username : {$username} and password : {$password}";
