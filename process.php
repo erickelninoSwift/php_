@@ -30,9 +30,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
 
       // display errors
-   echo $usernameError;
-    echo $emailError;
-    echo $passwordError;
+
+      if(empty($usernameError) && empty($passwordError) && empty($emailError)) {
+          echo "Form was submitted successfully";
+      }else {
+      // Error messages
+        echo $usernameError;
+      echo $emailError;
+      echo $passwordError;
+
+      }
+    
 
 }else {
 
