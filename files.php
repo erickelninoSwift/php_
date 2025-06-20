@@ -5,14 +5,12 @@ $currentDirectory = __DIR__;
 $filePath = __FILE__;
 
 
-$file = fopen($file_name,"r+");
-
-if (file_exists($file)) {
-    echo "file do exist";
-}else{
-    echo "file doesnt exist";
+$file = fopen($file_name,"r");
+ 
+if($file) {
+    $content = fread($file, filesize($file_name));
+    echo nl2br($content);
+    fclose($file);
+} else {
+     echo "Unable to open a file";
 }
-
-echo $currentDirectory;
-echo "<br>";
-echo $filePath;
