@@ -18,5 +18,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     print_r($_SESSION);
 
     echo "username : {$username} and password : {$password}";
+  }else {
+      echo "Make sure that all fields are filled";
   }
 }
+
+// Validation php
