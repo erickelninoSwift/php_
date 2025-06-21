@@ -11,7 +11,7 @@
     <h1>File Upload !</h1>
     <br>
     <form action="upload_file.php" method="POST" enctype="multipart/form-data">
-        Select File: <input type="file" name="upload_file_field" />
+        Select File: <input type="file" name="file" />
         <br>
         <br>
         <input type="submit" value="Upload file" />
