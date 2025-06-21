@@ -5,7 +5,7 @@ $currentDirectory = __DIR__;
 $filePath = __FILE__;
 
 
-$file = fopen($file_name,"w");
+$file = fopen($file_name,"a");
  
 // if($file) {
 //     $content = fread($file, filesize($file_name));
@@ -24,10 +24,10 @@ echo nl2br($myContent);
 
 if($file) {
      // write to a file 
-     if(file_put_contents($file_name, "You love me so much", FILE_APPEND | LOCK_EX ) !== false) {
-         echo "Data was appended successfully";
-     }
-   
+     fwrite($file, "\n" ."pharell williams");
+       echo "Data was appended successfully";
+       fclose($file);
+  
 } else {
      echo "Unable to open a file";
 }
