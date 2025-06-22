@@ -6,9 +6,9 @@
     //
     $upload_dir = "upload/";
     
-    echo "<pre>";
-      var_dump($_FILES);
-    echo "</pre>";
+    // echo "<pre>";
+    //   var_dump($_FILES);
+    // echo "</pre>";
 
     // if the directory doesnt not exist then create one
     if(!is_dir($upload_dir) === true) {
@@ -16,10 +16,18 @@
     }
     
     // loop through all the files uploaded 
-    foreach($_FILES['files']['name'] as $key => $value) {
+    print_r($_FILES['files']['name'][1]);
+    //
+    foreach($_FILES['files']['name'] as $key => $file_name) {
        
+        $tmp_name = $_FILES['files']['tmp_name'][$key];
+        $file_size = $_FILES['files']['size'][$key];
+        $file_error = $_FILES['files']['error'][$key];
+        $file_type = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        
+        //
          echo "<pre>";
-        var_dump($value);
+        var_dump( $tmp_name);
          echo "</pre>";
     }
 
