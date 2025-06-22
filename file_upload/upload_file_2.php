@@ -1,8 +1,11 @@
 <?php 
 // leran to diplay error
+
+ $fileError = "";
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     //
+    
 
     $allowed_files = ["pdf","jpg","jpeg","tiff"];
 
@@ -18,18 +21,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file_size = $file__['size'];
         $file_type = strtolower(pathinfo($currentFile, PATHINFO_EXTENSION));
         $file_size_converted = round(($file_size / 1000) ,2);
-
+       
       
-         if($file_size > 4 * 1024 * 1024) {
+         if($file_size > 2 * 1024 * 1024) {
             //
-             echo "File is very Large : " . $file_size_converted;
+              $fileError =  "File is very Large : " . $file_size_converted;
              ///
            } elseif(in_array($file_type, $allowed_files)) {
 
-
+               echo "The file with the right format was uploaded";
             
            }else {
-                 echo "File type is not allowed to be uploaded";
+                  $fileError =  "File type is not allowed to be uploaded";
            }
 
 
@@ -45,4 +48,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }else {
         echo "There was an error while trying to upload the file";
     }
+     echo empty($fileError) ?"":"";
 }
