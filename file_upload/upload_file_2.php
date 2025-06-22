@@ -20,18 +20,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file_size_converted = round(($file_size / 1000) ,2);
 
       
-
-        if(in_array($file_type, $allowed_files)) {
-             echo $file_type;
-             echo "<br>";
-              echo $file_size_converted . "KB";
-
-             if($file_size > 2 * 1024 * 1024) {
+         if($file_size > 4 * 1024 * 1024) {
+            //
              echo "File is very Large : " . $file_size_converted;
+             ///
+           } elseif(in_array($file_type, $allowed_files)) {
+
+
+            
+           }else {
+                 echo "File type is not allowed to be uploaded";
            }
-        }else {
-              echo "File type is not allowed to be uploaded";
-        }
 
 
        
