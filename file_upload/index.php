@@ -10,7 +10,7 @@
 <body>
     <h1>File Upload !</h1>
     <br>
-    <form action="upload_file.php" method="POST" enctype="multipart/form-data">
+    <form action="upload_file_2.php" method="POST" enctype="multipart/form-data">
         Select File: <input type="file" name="file" />
         <br>
         <br>

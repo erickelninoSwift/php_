@@ -33,5 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "There was an error while uploading your file ";
         }
         
+    }else {
+        echo "There was an error while trying to upload the file";
     }
 }
