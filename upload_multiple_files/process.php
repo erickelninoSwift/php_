@@ -25,11 +25,32 @@
         $file_error = $_FILES['files']['error'][$key];
         $file_type = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
         $target = $upload_dir . basename($file_name);
-        echo $target;
+        // echo $target;
+
+        if($file_error === UPLOAD_ERR_OK) {
+            //
+            if($file_size > 5 * 1024 * 1024) {
+                echo "<br>" . "ERROR: file too big";
+                break;
+            }
+            // check file extentions
+            if(!in_array($file_type, ['pdf','jpeg','jpg,png'])) {
+                echo "<br>" . "ERROR: file $file_name extension is not valid";
+                break; 
+            }
+            // upload
+
+            if(move_uploaded_file($tmp_name, $target)) {
+                echo "DEBUG: $file_name was uploaded successfully";
+            }else {
+                echo "<br>" . "file $file_name was no uploaded";
+            }
+            
+        }
         //
-         echo "<pre>";
-        var_dump( $tmp_name);
-         echo "</pre>";
+        //  echo "<pre>";
+        //     var_dump( $tmp_name);
+        //  echo "</pre>";
     }
 
     
