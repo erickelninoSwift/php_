@@ -24,7 +24,8 @@
         $file_size = $_FILES['files']['size'][$key];
         $file_error = $_FILES['files']['error'][$key];
         $file_type = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
+        $target = $upload_dir . basename($file_name);
+        echo $target;
         //
          echo "<pre>";
         var_dump( $tmp_name);
