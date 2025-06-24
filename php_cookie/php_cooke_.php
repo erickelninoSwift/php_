@@ -11,4 +11,5 @@ setcookie(
     true                     // httponly (not accessible via JavaScript)
 );
 
+
 print_r(PHP_SESSION_ACTIVE);
