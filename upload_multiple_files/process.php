@@ -16,7 +16,7 @@
     }
     
     // loop through all the files uploaded 
-    print_r($_FILES['files']['name'][1]);
+    print_r($_FILES['files']['name']);
     //
     foreach($_FILES['files']['name'] as $key => $file_name) {
        
@@ -34,7 +34,7 @@
                 break;
             }
             // check file extentions
-            if(!in_array($file_type, ['pdf','jpeg','jpg,png'])) {
+            if(!in_array($file_type, ['pdf','jpeg','jpg','png'])) {
                 echo "<br>" . "ERROR: file $file_name extension is not valid";
                 break; 
             }
