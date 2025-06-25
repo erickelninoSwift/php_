@@ -17,9 +17,9 @@
      if($user_admin === $user_name && $user_password === $password) {
 
         $_SESSION['user_logged_in'] = (bool)true;
-        $_SESSION['username'] = (string) $user_name;
+        $_SESSION['username'] = (string) "Eriik Elnino";
         
-        header("locations: admin.php");
+        header("location: admin.php");
         exit;
      }else {
         $error = " wrong credentials were provided";
