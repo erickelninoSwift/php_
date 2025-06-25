@@ -1,6 +1,10 @@
 <?php
    session_start();
-   $user_name = $_SESSION['username'] ?? 'Guest';
+   $user_name = $_SESSION['username'];
+   //
+   if(!isset($_SESSION['username'])){
+      header('location: login.php');;
+   }
 
 ?>
 
@@ -16,6 +20,8 @@
 <body>
     <h1>Admin</h1>
     <h2>Welcome , <?php echo $user_name; ?></h2>
+
+    <a href="logout.php">Logout</a>
 </body>
 
 </html>
