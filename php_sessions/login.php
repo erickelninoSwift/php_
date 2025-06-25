@@ -1,5 +1,7 @@
 <?php
+//start the session
 
+  session_start();
   $error = "";
 
    if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,6 +13,17 @@
 
      $user_name = $_POST['username'];
      $password = $_POST['password'];
+
+     if($user_admin === $user_name && $user_password === $password) {
+
+        $_SESSION['user_logged_in'] = (bool)true;
+        $_SESSION['username'] = (string) $user_name;
+        
+        header("locations: admin.php");
+        exit;
+     }else {
+        $error = " wrong credentials were provided";
+     }
      
      
    }
