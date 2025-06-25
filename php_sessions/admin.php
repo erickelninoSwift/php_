@@ -2,8 +2,9 @@
    session_start();
    $user_name = $_SESSION['username'];
    //
-   if(!isset($_SESSION['username'])){
-      header('location: login.php');;
+   if(!isset($_SESSION['username']) || !isset($_SESSION['user_logged_in'])){
+      header('location: login.php');
+      exit();
    }
 
 ?>
