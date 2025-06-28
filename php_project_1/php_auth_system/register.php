@@ -2,26 +2,53 @@
     include "database.php";
 
     $error = "";
-    if($_SERVER['REQUEST_METHOD'] === "POST") {
+    $success = "";
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
         if(isset($_POST["username"]) 
         && isset($_POST["email"]) 
         && isset($_POST["password"]) 
         && isset($_POST["confirm_password"])) {
             // 
             //validations
+            $error = "";
             $username = mysqli_real_escape_string($connection,trim($_POST["username"]));
             $email = mysqli_real_escape_string( $connection,trim($_POST["email"]));
             $password = mysqli_real_escape_string( $connection,trim($_POST["password"]));
             $confirm_password = mysqli_real_escape_string( $connection,trim($_POST["confirm_password"]));
+       
+            //if password does not match
+            if($password !== $confirm_password) {
+                // 
+                $error = "password do not match";
 
-            
+            }else {
+                // Query to register the user
+                $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$password')";
+                $result = mysqli_query($connection,$query);
+                //
+                if($result) {
+                    echo "user account was created";
+
+                    // reset those fileds to empty 
+                    $_POST["username"] = "";
+                    $_POST["email"] = "";
+                    $_POST["password"] = "";
+                    $_POST["confirm_password"] = "";
+                    
+                    header("location: login.php");
+
+                }else {
+                    echo "Something has happened while registering the user" . mysqli_error( $connection );
+                }
+            }
    
+        }else {
+
+            $error = "Please make sure all the fields are completed";
         }
      
-    }else {
-        echo "this is not a post method";
     }
-?>;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,12 +87,13 @@
 
     <div class="container">
         <div class="form-container">
-            <form method="POST" action="">
+            <form method="POST" action="register.php">
                 <h2>Create your Account</h2>
 
                 <!-- Error message placeholder -->
                 <p style="color:red">
                     <!-- Error message goes here -->
+                    <?php echo $error; ?>
                 </p>
 
                 <label for="username">Username:</label>
