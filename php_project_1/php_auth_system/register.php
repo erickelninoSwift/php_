@@ -35,7 +35,7 @@
                 $results_array = mysqli_fetch_assoc($execute_query_check_user);
                 
                  
-                 if(mysqli_num_rows($execute_query_check_user) > 0) {
+                 if(mysqli_num_rows($execute_query_check_user) === 1) {
 
                     // we assume the user doesnt exist 
 
