@@ -12,11 +12,29 @@
 
 <body>
     <h2>Welcome to our Home page </h2>
-    <p>
-        <a href="login.php">Login</a>
-        <br>
-        <a href="register.php">Register</a>
-    </p>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.php">Home</a>
+            </li>
+
+            <!-- When the user is logged in -->
+            <li>
+                <a href="admin.php">Admin</a>
+            </li>
+            <li>
+                <a href="logout.html">Logout</a>
+            </li>
+
+            <!-- When the user is not logged in -->
+            <li>
+                <a href="register.php">Register</a>
+            </li>
+            <li>
+                <a href="login.php">Login</a>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 </html>

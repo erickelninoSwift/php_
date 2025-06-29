@@ -24,31 +24,39 @@
             }else {
 
                 // check if users already exist 
-                $query_check_user_exist = "SELECT * FROM users where email=`$email`";
+                $query_check_user_exist = "SELECT * FROM users where email='$email' LIMIT 1";
                 $execute_query_check_user = mysqli_query($connection,$query_check_user_exist);
-                if(mysqli_num_rows($execute_query_check_user) === 0) {
+
+                if (!$execute_query_check_user) {
+                 die("Query failed: " . mysqli_error($connection));
+                }           
+                // convert resulktinto array
+
+                $results_array = mysqli_fetch_assoc($execute_query_check_user);
+                
+                 
+                 if(mysqli_num_rows($execute_query_check_user) > 0) {
 
                     // we assume the user doesnt exist 
 
-                      $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$password')";
-                $result = mysqli_query($connection,$query);
+                     $error = "user with email $email already exist ";
+
+
+                }else {
+
+                    $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$password')";
+                    $result = mysqli_query($connection,$query);
                 //
-                if($result) {
-                    echo "user account was created";
+                      if($result) {
+                        echo "user account was created";
 
                     // reset those fileds to empty 
                     
-                    header("location: login.php");
+                     header("location: login.php");
 
-                }else {
-                    echo "Something has happened while registering the user" . mysqli_error( $connection );
-                }
-
-
-                }else {
-
-                    $error = "user with email $email already exist ";
-                    header("location: login.php");
+                      }else {
+                      echo "Something has happened while registering the user" . mysqli_error( $connection );
+                   }
 
                 }
 
@@ -102,7 +110,7 @@
 
     <div class="container">
         <div class="form-container">
-            <form method="POST" action="register.php">
+            <form method="POST" action="">
                 <h2>Create your Account</h2>
 
                 <!-- Error message placeholder -->
