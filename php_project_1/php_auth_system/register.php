@@ -39,7 +39,7 @@
 
                     // we assume the user doesnt exist 
 
-                     $error = "user with email $email already exist ";
+                     $error = " user with email $email already exist! ";
 
 
                 }else {
@@ -114,10 +114,12 @@
                 <h2>Create your Account</h2>
 
                 <!-- Error message placeholder -->
+                <?php if(!empty($error)): ?>
                 <p style="color:red">
                     <!-- Error message goes here -->
                     <?php echo $error; ?>
                 </p>
+                <?php endif; ?>
 
                 <label for="username">Username:</label>
                 <input placeholder="Enter your username" type="text" name="username" required>
