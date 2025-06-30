@@ -44,7 +44,11 @@
 
                 }else {
 
-                    $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$password')";
+
+                    //hashing password
+
+                    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+                    $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$$password_hashed')";
                     $result = mysqli_query($connection,$query);
                 //
                       if($result) {
