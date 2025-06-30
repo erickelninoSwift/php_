@@ -1,44 +1,48 @@
 <?php 
     include "database.php";
-
-    $error = (string) "";
-    if($_SERVER['REQUEST_METHOD'] === "POST") {
+    $error = "";
+    $user_exists = (bool) false;
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
         // login 
-
-        echo "erick elnino";
       if(isset($_POST["username"]) && isset($_POST["password"])) {
-          $username = mysqli_real_escape_string($connection,trim($_POST["username"]));
-          $password = mysqli_real_escape_string($connection, trim( $_POST["password"]));
-          $login_query = "SELECT * FROM users WHERE email = '$username'";
+          $username = mysqli_real_escape_string($connection,$_POST["username"]);
+          $password = mysqli_real_escape_string($connection,$_POST["password"]);
+          $login_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
 
           $query_results = mysqli_query($connection,$login_query);
-          // check number of rows
 
+        //   $query_array = mysqli_fetch_assoc($query_results);
           if(mysqli_num_rows($query_results) === 1) {
-          //the user was found 
-        echo "everyone put your hands up";
-        
-          }else{
+             // fetch user assoc array
+             $user = mysqli_fetch_assoc($query_results);
 
-            $error = "User was not found";
+             $user_password = $user['password'];
+             $verify_password = password_verify($password,$user_password);
+
+             if($user && $verify_password) {
+                echo "success";
+             }
+             
+             $user_exists = true;
+
+            //  header("location: admin.php");
+          }else {
+            $error = "user does not exist";
           }
-
-          
 
       }else {
           $error = "Please make sure all fields are filled";
       }
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Login | System</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 
 <body class="login">
@@ -82,7 +86,6 @@
                     <?php echo $error; ?>
                 </p>
                 <?php endif; ?>
-
                 <label for="username">Username:</label><br>
                 <input type="text" name="username" required><br><br>
 
@@ -99,3 +102,5 @@
 </body>
 
 </html>
+
+<?php mysqli_close($connection); ?>
