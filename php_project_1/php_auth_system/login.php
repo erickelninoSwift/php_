@@ -1,29 +1,48 @@
 <?php 
     include "database.php";
+    // start a session
+    // session_start();
+
+    // this will check wheter the user is alredy logged on 
+    if(isset($_SESSION["user_logged_in"]) && $_SESSION['logged_in'] === true ){
+       // if the user is logged then redicrect to admin pahe 
+       header('location: admin.php');
+       exit;    
+    }
+
     $error = "";
     $user_exists = (bool) false;
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if($_SERVER['REQUEST_METHOD'] === "POST") {
         // login 
       if(isset($_POST["username"]) && isset($_POST["password"])) {
-          $username = mysqli_real_escape_string($connection,$_POST["username"]);
-          $password = mysqli_real_escape_string($connection,$_POST["password"]);
+          $username = mysqli_real_escape_string($connection,trim($_POST["username"]));
+          $password = trim($_POST["password"]);
           $login_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
 
+          echo "<br>";
           $query_results = mysqli_query($connection,$login_query);
-
+        
         //   $query_array = mysqli_fetch_assoc($query_results);
           if(mysqli_num_rows($query_results) === 1) {
+
+            echo "true";
              // fetch user assoc array
              $user = mysqli_fetch_assoc($query_results);
 
-             $user_password = $user['password'];
-             $verify_password = password_verify($password,$user_password);
+             //
+             if(password_verify($password,$user['password'])) {
+               echo "false";
+                $_SESSION['user_logged_in'] = true;
+                $_SESSION['username'] = $username;
+                // when user was logged redicrect to admin page
+                 header('location: admin.php');
+                 exit;
 
-             if($user && $verify_password) {
-                echo "success";
+                //
+             }else {
+                $error = "Password does not match !";
+                exit;
              }
-             
-             $user_exists = true;
 
             //  header("location: admin.php");
           }else {

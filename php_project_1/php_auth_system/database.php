@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 //set to display all errors
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
