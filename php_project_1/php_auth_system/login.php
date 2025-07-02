@@ -1,8 +1,6 @@
 <?php 
     include "database.php";
-    // start a session
-    // session_start();
-
+   
     // this will check wheter the user is alredy logged on 
     if(isset($_SESSION["user_logged_in"]) && $_SESSION['logged_in'] === true ){
        // if the user is logged then redicrect to admin pahe 
@@ -30,7 +28,7 @@
              //
              if(password_verify($password,$user['password'])) {
         
-                $_SESSION['user_logged_in'] = true;
+                $_SESSION['user_logged_in'] = password_verify($password,$user['password']);
                 $_SESSION['username'] = $username;
                 // when user was logged redicrect to admin page
                  header('location: admin.php');
@@ -59,7 +57,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | System</title>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="login">
@@ -76,7 +74,7 @@
                 <a href="admin.php">Admin</a>
             </li>
             <li>
-                <a href="logout.html">Logout</a>
+                <a href="logout.php">Logout</a>
             </li>
 
             <!-- When the user is not logged in -->

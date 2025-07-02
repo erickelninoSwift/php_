@@ -13,8 +13,8 @@
             $error = "";
             $username = mysqli_real_escape_string($connection,trim($_POST["username"]));
             $email = mysqli_real_escape_string( $connection,trim($_POST["email"]));
-            $password =$_POST["password"];
-            $confirm_password = $_POST["confirm_password"];
+            $password = trim($_POST["password"]);
+            $confirm_password = trim($_POST["confirm_password"]);
        
             //if password does not match
             if($password !== $confirm_password) {
@@ -49,13 +49,15 @@
                     //hashing password
 
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$$password_hashed')";
+                    $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$passwordHash')";
                     $result = mysqli_query($connection,$query);
                 //
-                      if($result) {
+                     
+                      if($result && password_verify($passwordHash, $password) === true) {
                         echo "user account was created";
-                        $_SESSION['logged_in'] = true;
+                        $_SESSION['logged_in'] = password_verify($passwordHash, $password) === true;
                         $_SESSION['username'] = $username;
+
 
                          header("Location: admin.php"); // Use header() for redirection
                          exit;
@@ -101,7 +103,7 @@
                 <a href="admin.php">Admin</a>
             </li>
             <li>
-                <a href="logout.html">Logout</a>
+                <a href="logout.php">Logout</a>
             </li>
 
             <!-- When the user is not logged in -->
