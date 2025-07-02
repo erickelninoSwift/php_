@@ -14,9 +14,7 @@
       if($fetch_users_count > 0){
         // convert to assoc array
         $fetch_users = mysqli_fetch_assoc($fetch_users_query);
-        echo "<pre>";
-        var_dump($fetch_users);
-        echo "</pre>";
+       
       }
     }
 ?>
