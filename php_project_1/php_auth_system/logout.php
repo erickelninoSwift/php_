@@ -1,7 +1,8 @@
 <?php 
 include "database.php";
-    session_destroy();
     $_SESSION = [];
+    // destroy the session
+     session_destroy();
     header('location: login.php');
 
     mysqli_close($connection);

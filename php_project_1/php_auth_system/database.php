@@ -10,7 +10,7 @@ error_reporting(E_ALL);
       if($connection) {
    // connected
        //
-       echo "connected";
+     
        return;
    } else {
        echo "". mysqli_connect_error();
