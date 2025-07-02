@@ -53,9 +53,9 @@
                     $result = mysqli_query($connection,$query);
                 //
                      
-                      if($result && password_verify($passwordHash, $password) === true) {
+                      if($result) {
                         echo "user account was created";
-                        $_SESSION['logged_in'] = password_verify($passwordHash, $password) === true;
+                        $_SESSION['logged_in'] = (bool) true;
                         $_SESSION['username'] = $username;
 
 
@@ -118,33 +118,35 @@
 
     <div class="container">
         <div class="form-container">
-            <form method="POST" action="">
-                <h2>Create your Account</h2>
+            <div>
+                < </div>
+                    <form method="POST" action="">
+                        <h2>Create your Account</h2>
 
-                <!-- Error message placeholder -->
-                <?php if(!empty($error)): ?>
-                <p style="color:red">
-                    <!-- Error message goes here -->
-                    <?php echo $error; ?>
-                </p>
-                <?php endif; ?>
+                        <!-- Error message placeholder -->
+                        <?php if(!empty($error)): ?>
+                        <p style="color:red">
+                            <!-- Error message goes here -->
+                            <?php echo $error; ?>
+                        </p>
+                        <?php endif; ?>
 
-                <label for="username">Username:</label>
-                <input placeholder="Enter your username" type="text" name="username" required>
+                        <label for="username">Username:</label>
+                        <input placeholder="Enter your username" type="text" name="username" required>
 
-                <label for="email">Email:</label>
-                <input placeholder="Enter your email" type="email" name="email" required>
+                        <label for="email">Email:</label>
+                        <input placeholder="Enter your email" type="email" name="email" required>
 
-                <label for="password">Password:</label>
-                <input placeholder="Enter your password" type="password" name="password" required>
+                        <label for="password">Password:</label>
+                        <input placeholder="Enter your password" type="password" name="password" required>
 
-                <label for="confirm_password">Confirm Password:</label>
-                <input placeholder="Confirm your password" type="password" name="confirm_password" required>
+                        <label for="confirm_password">Confirm Password:</label>
+                        <input placeholder="Confirm your password" type="password" name="confirm_password" required>
 
-                <input type="submit" value="Register">
-            </form>
+                        <input type="submit" value="Register">
+                    </form>
+            </div>
         </div>
-    </div>
 
 </body>
 

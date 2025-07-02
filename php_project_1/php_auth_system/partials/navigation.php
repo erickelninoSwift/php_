@@ -1,3 +1,9 @@
+<?php
+// detect the current page // remove location by using the base name
+    $current_page = basename($_SERVER['PHP_SELF']);
+    
+?>
+
 <nav>
     <ul>
         <li>

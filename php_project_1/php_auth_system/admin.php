@@ -4,6 +4,21 @@
     if(!isset($_SESSION['username']) && !isset($_SESSION['user_logged_in'])){
         header('location: login.php');
     }
+    // 
+    if(isset($_SESSION['username']) && isset($_SESSION['user_logged_in']) === true){
+      //
+      $fetch_users = "SELECT * FROM users";
+      // fetch users from the database
+      $fetch_users_query = mysqli_query($connection,$fetch_users);
+      $fetch_users_count = mysqli_num_rows($fetch_users_query);
+      if($fetch_users_count > 0){
+        // convert to assoc array
+        $fetch_users = mysqli_fetch_assoc($fetch_users_query);
+        echo "<pre>";
+        var_dump($fetch_users);
+        echo "</pre>";
+      }
+    }
 ?>
 
 <!DOCTYPE html>

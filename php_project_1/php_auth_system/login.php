@@ -28,7 +28,7 @@
              //
              if(password_verify($password,$user['password'])) {
         
-                $_SESSION['user_logged_in'] = password_verify($password,$user['password']);
+                $_SESSION['user_logged_in'] = true;
                 $_SESSION['username'] = $username;
                 // when user was logged redicrect to admin page
                  header('location: admin.php');
