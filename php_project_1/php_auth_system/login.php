@@ -16,22 +16,20 @@
         // login 
       if(isset($_POST["username"]) && isset($_POST["password"])) {
           $username = mysqli_real_escape_string($connection,trim($_POST["username"]));
-          $password = trim($_POST["password"]);
+          $password = $_POST["password"];
           $login_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
 
-          echo "<br>";
           $query_results = mysqli_query($connection,$login_query);
         
         //   $query_array = mysqli_fetch_assoc($query_results);
-          if(mysqli_num_rows($query_results) === 1) {
+          if(mysqli_num_rows($query_results) !== 0) {
 
-            echo "true";
              // fetch user assoc array
              $user = mysqli_fetch_assoc($query_results);
 
              //
              if(password_verify($password,$user['password'])) {
-               echo "false";
+        
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['username'] = $username;
                 // when user was logged redicrect to admin page

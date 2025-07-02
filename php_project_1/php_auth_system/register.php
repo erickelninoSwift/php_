@@ -13,13 +13,14 @@
             $error = "";
             $username = mysqli_real_escape_string($connection,trim($_POST["username"]));
             $email = mysqli_real_escape_string( $connection,trim($_POST["email"]));
-            $password = mysqli_real_escape_string( $connection,trim($_POST["password"]));
-            $confirm_password = mysqli_real_escape_string( $connection,trim($_POST["confirm_password"]));
+            $password =$_POST["password"];
+            $confirm_password = $_POST["confirm_password"];
        
             //if password does not match
             if($password !== $confirm_password) {
                 // 
                 $error = "password do not match";
+                exit;
 
             }else {
 
@@ -47,16 +48,17 @@
 
                     //hashing password
 
-                    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                     $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$$password_hashed')";
                     $result = mysqli_query($connection,$query);
                 //
                       if($result) {
                         echo "user account was created";
+                        $_SESSION['logged_in'] = true;
+                        $_SESSION['username'] = $username;
 
-                    // reset those fileds to empty 
-                    
-                     header("location: login.php");
+                         header("Location: admin.php"); // Use header() for redirection
+                         exit;
 
                       }else {
                       echo "Something has happened while registering the user" . mysqli_error( $connection );
