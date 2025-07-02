@@ -10,5 +10,3 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Login System [SQL & PHP]</title>
 </head>
-
-<body>
