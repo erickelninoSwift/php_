@@ -1,5 +1,6 @@
 <?php
-    include "database.php";
+    include "functions.php";
+    $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,3 +11,5 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Login System [SQL & PHP]</title>
 </head>
+
+<body class="<?php echo addPageClass($current_page); ?>">

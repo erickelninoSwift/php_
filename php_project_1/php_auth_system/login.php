@@ -60,39 +60,32 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="login">
+<?php include "./partials/header.php"; ?>
+<?php include "partials/navigation.php" ?>
 
+<!-- Include Header and Navigation -->
 
-    <?php include "partials/navigation.php" ?>
+<div class="container">
+    <div class="form-container">
+        <form method="POST" action="">
+            <h2>Login</h2>
 
-    <!-- Include Header and Navigation -->
+            <!-- Error message placeholder -->
+            <?php if(!empty($error)) : ?>
+            <p style="color:red">
+                <?php echo $error; ?>
+            </p>
+            <?php endif; ?>
+            <label for="username">Username:</label><br>
+            <input type="text" name="username" required><br><br>
 
-    <div class="container">
-        <div class="form-container">
-            <form method="POST" action="">
-                <h2>Login</h2>
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" required><br><br>
 
-                <!-- Error message placeholder -->
-                <?php if(!empty($error)) : ?>
-                <p style="color:red">
-                    <?php echo $error; ?>
-                </p>
-                <?php endif; ?>
-                <label for="username">Username:</label><br>
-                <input type="text" name="username" required><br><br>
-
-                <label for="password">Password:</label><br>
-                <input type="password" name="password" required><br><br>
-
-                <input type="submit" value="Login">
-            </form>
-        </div>
+            <input type="submit" value="Login">
+        </form>
     </div>
+</div>
 
-    <!-- Include Footer -->
-
-</body>
-
-</html>
 
 <?php mysqli_close($connection); ?>

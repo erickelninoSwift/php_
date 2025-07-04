@@ -90,47 +90,42 @@
     <title>Register</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
-<body class="register">
-    <?php 
+<?php include "./partials/header.php"; ?>
+<?php 
        include "./partials/navigation.php";
      
      ?>
 
-    <div class="container">
-        <div class="form-container">
-            <div>
-                < </div>
-                    <form method="POST" action="">
-                        <h2>Create your Account</h2>
+<div class="container">
+    <div class="form-container">
+        <div>
+            < </div>
+                <form method="POST" action="">
+                    <h2>Create your Account</h2>
 
-                        <!-- Error message placeholder -->
-                        <?php if(!empty($error)): ?>
-                        <p style="color:red">
-                            <!-- Error message goes here -->
-                            <?php echo $error; ?>
-                        </p>
-                        <?php endif; ?>
+                    <!-- Error message placeholder -->
+                    <?php if(!empty($error)): ?>
+                    <p style="color:red">
+                        <!-- Error message goes here -->
+                        <?php echo $error; ?>
+                    </p>
+                    <?php endif; ?>
 
-                        <label for="username">Username:</label>
-                        <input placeholder="Enter your username" type="text" name="username" required>
+                    <label for="username">Username:</label>
+                    <input placeholder="Enter your username" type="text" name="username" required>
 
-                        <label for="email">Email:</label>
-                        <input placeholder="Enter your email" type="email" name="email" required>
+                    <label for="email">Email:</label>
+                    <input placeholder="Enter your email" type="email" name="email" required>
 
-                        <label for="password">Password:</label>
-                        <input placeholder="Enter your password" type="password" name="password" required>
+                    <label for="password">Password:</label>
+                    <input placeholder="Enter your password" type="password" name="password" required>
 
-                        <label for="confirm_password">Confirm Password:</label>
-                        <input placeholder="Confirm your password" type="password" name="confirm_password" required>
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input placeholder="Confirm your password" type="password" name="confirm_password" required>
 
-                        <input type="submit" value="Register">
-                    </form>
-            </div>
+                    <input type="submit" value="Register">
+                </form>
         </div>
+    </div>
 
-</body>
-
-</html>
-
-<?php mysqli_close($connection); ?>
+    <?php mysqli_close($connection); ?>

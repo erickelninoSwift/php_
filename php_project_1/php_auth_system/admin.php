@@ -30,8 +30,6 @@
     <title>Admin Page</title>
 </head>
 
-<body class="admin">
-
     <?php include "partials/navigation.php" ?>
     <h1>Manage Users</h1>
 
@@ -87,8 +85,5 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Include Footer -->
-</body>
 
 </html>
