@@ -112,10 +112,12 @@
                     <?php endif; ?>
 
                     <label for="username">Username:</label>
-                    <input placeholder="Enter your username" type="text" name="username" required>
+                    <input value="<?php echo isset($username) === true ? $username : '';?>"
+                        placeholder="Enter your username" type="text" name="username" required>
 
                     <label for="email">Email:</label>
-                    <input placeholder="Enter your email" type="email" name="email" required>
+                    <input value="<?php echo isset($email) === true ? $email : '';?>" placeholder="Enter your email"
+                        type="email" name="email" required>
 
                     <label for="password">Password:</label>
                     <input placeholder="Enter your password" type="password" name="password" required>
