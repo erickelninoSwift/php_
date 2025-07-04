@@ -1,4 +1,5 @@
 <?php 
+include "./partials/functions.php";
 session_start();
 //set to display all errors
 ini_set('display_errors', '1');

@@ -1,6 +1,5 @@
 <?php
     include "database.php";
-
     $error = "";
     $success = "";
     if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -34,7 +33,7 @@
                 // convert resulktinto array
                 
                  
-                 if(check_user_exists($connection,$email)) {
+                 if(check_user_exists($connection,$email) === true) {
 
                     // we assume the user doesnt exist 
 
