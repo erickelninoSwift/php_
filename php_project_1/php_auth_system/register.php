@@ -25,18 +25,16 @@
             }else {
 
                 // check if users already exist 
-                $query_check_user_exist = "SELECT * FROM users where email='$email' LIMIT 1";
-                $execute_query_check_user = mysqli_query($connection,$query_check_user_exist);
+                // $query_check_user_exist = "SELECT * FROM users where email='$email' LIMIT 1";
+                // $execute_query_check_user = mysqli_query($connection,$query_check_user_exist);
 
-                if (!$execute_query_check_user) {
-                 die("Query failed: " . mysqli_error($connection));
-                }           
+                // if (!$execute_query_check_user) {
+                //  die("Query failed: " . mysqli_error($connection));
+                // }           
                 // convert resulktinto array
-
-                $results_array = mysqli_fetch_assoc($execute_query_check_user);
                 
                  
-                 if(mysqli_num_rows($execute_query_check_user) === 1) {
+                 if(check_user_exists($connection,$email)) {
 
                     // we assume the user doesnt exist 
 
@@ -45,7 +43,7 @@
 
                 }else {
 
-
+                    $results_array = mysqli_fetch_assoc($execute_query_check_user);
                     //hashing password
 
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);

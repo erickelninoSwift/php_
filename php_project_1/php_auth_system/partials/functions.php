@@ -12,3 +12,13 @@
 
         return $current_page_set ? $page_value : '';
     }
+
+    // function to check if users already exist 
+
+    function check_user_exists($connection,$email) {
+       //
+          $query_check_user_exist = "SELECT * FROM users where email='$email' LIMIT 1";
+         $execute_query_check_user = mysqli_query($connection,$query_check_user_exist);
+
+         return mysqli_num_rows($execute_query_check_user) > 0 ? true : false;
+    }

@@ -69,15 +69,15 @@
     <div class="form-container">
         <form method="POST" action="">
             <h2>Login</h2>
-
             <!-- Error message placeholder -->
-            <?php if(!empty($error)) : ?>
+            <?php if(isset($error)=== true) : ?>
             <p style="color:red">
                 <?php echo $error; ?>
             </p>
             <?php endif; ?>
             <label for="username">Username:</label><br>
-            <input type="text" name="username" required><br><br>
+            <input value="<?php echo isset($username) === true ? $username : '';?>" type="text" name="username"
+                required><br><br>
 
             <label for="password">Password:</label><br>
             <input type="password" name="password" required><br><br>
