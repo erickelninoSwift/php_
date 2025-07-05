@@ -32,3 +32,7 @@
        header("location:  {$log_in_page}");
        exit;
     }
+
+    function format_data_format($data) {
+      return date('j M D', strtotime($data));
+    }
