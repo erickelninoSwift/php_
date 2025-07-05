@@ -26,7 +26,7 @@
         $sql_query = "UPDATE users SET email='$email_address' WHERE id='$user_email_to_update_id'";
         $result = mysqli_query($connection,$sql_query);
         // Fetch Associate Array
-         if($result) {
+         if(check_query($result)) {
             redirect("admin.php");
          }
        }

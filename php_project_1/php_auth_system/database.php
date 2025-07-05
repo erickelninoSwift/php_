@@ -16,5 +16,15 @@ error_reporting(E_ALL);
    } else {
        echo "". mysqli_connect_error();
    }
+   
 
-   die;
+     // check if query is true
+
+    function check_query($query) {
+      global $connection;
+      if(!$query) {
+         return "Error : " . mysqli_error($connection);
+      }
+      return true;
+    }
+?>;
