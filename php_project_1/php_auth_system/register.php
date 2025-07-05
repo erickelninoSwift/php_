@@ -23,22 +23,11 @@
 
             }else {
 
-                // check if users already exist 
-                // $query_check_user_exist = "SELECT * FROM users where email='$email' LIMIT 1";
-                // $execute_query_check_user = mysqli_query($connection,$query_check_user_exist);
-
-                // if (!$execute_query_check_user) {
-                //  die("Query failed: " . mysqli_error($connection));
-                // }           
-                // convert resulktinto array
-                
-                 
+    
                  if(check_user_exists($connection,$email) === true) {
-
                     // we assume the user doesnt exist 
 
                      $error = " user with email $email already exist! ";
-
 
                 }else {
 
