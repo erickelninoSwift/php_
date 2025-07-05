@@ -31,9 +31,8 @@
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['username'] = $username;
                 // when user was logged redicrect to admin page
-                 header('location: admin.php');
-                 exit;
-
+                redirect("admin.php");
+            
                 //
              }else {
                 $error = "Password does not match !";

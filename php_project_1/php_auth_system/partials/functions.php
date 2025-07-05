@@ -23,5 +23,12 @@
          return mysqli_num_rows($execute_query_check_user) === 1;
     }
 
+    function is_user_logged_in(){
+        return isset($_SESSION['username']) && isset($_SESSION['user_logged_in']);
+    }
 
-    ?>;
+    //redirect
+    function redirect($log_in_page) {
+       header("location:  {$log_in_page}");
+       exit;
+    }

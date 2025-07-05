@@ -45,7 +45,7 @@
                         $_SESSION['username'] = $username;
 
 
-                         header("Location: admin.php"); // Use header() for redirection
+                         redirect("admin.php"); // Use header() for redirection
                          exit;
 
                       }else {

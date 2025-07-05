@@ -1,8 +1,8 @@
 <?php 
     include "database.php";
     // 
-    if(!isset($_SESSION['username']) && !isset($_SESSION['user_logged_in'])){
-        header('location: login.php');
+    if(!is_user_logged_in()){
+        redirect("login.php");
     }
     // 
     if(isset($_SESSION['username']) && isset($_SESSION['user_logged_in']) === true){

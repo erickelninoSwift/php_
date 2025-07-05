@@ -1,4 +1,5 @@
 <?php
+   include "database.php";
    include "partials/header.php";
 ?>
 <?php include "partials/navigation.php" ?>
