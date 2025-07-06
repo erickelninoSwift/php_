@@ -31,6 +31,19 @@
          }
        }
     }
+
+    if(isset($_POST["delete_user"])) {
+        // display the user you want to delete
+        if(isset($_POST["user_id"]) && !empty($_POST["user_id"])) {
+            $user_id_to_delete = $_POST['user_id'];
+            echo $user_id_to_delete;
+             $sql_delete_user_query = "DELETE FROM users WHERE id='$user_id_to_delete'";
+             $result_ = mysqli_query($connection,$sql_delete_user_query);
+             if(check_query($result_)) {
+                redirect("admin.php");
+             }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +87,7 @@
                         <button class="edit" type="submit" name="edit_user">Edit</button>
                     </form>
                     <form method="POST" style="display:inline-block;"
-                        onsubmit="return confirm('Are you sure you want to delete this user?');">
+                        onsubmit="return confirm('Are you sure you want to delete this user <?php echo $fetch_users['username'];?> ?');">
                         <input type="hidden" name="user_id" value="<?php echo $fetch_users['id']; ?>">
                         <button class="delete" type="submit" name="delete_user">Delete</button>
                     </form>
