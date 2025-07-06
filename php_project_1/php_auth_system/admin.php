@@ -29,7 +29,7 @@
         // Fetch Associate Array
          if(check_query($result)) {
             //
-            $_SESSION["message"] = "User was updated successfully !";
+            $_SESSION["message"] = "User : {$username_to_update} was updated successfully !";
             $_SESSION["msg_type"] = "success";
             //
             redirect("admin.php");
@@ -45,7 +45,7 @@
              $sql_delete_user_query = "DELETE FROM users WHERE id='$user_id_to_delete'";
              $result_ = mysqli_query($connection,$sql_delete_user_query);
              if(check_query($result_)) {
-                  $_SESSION["message"] = "User was deleted successfully !";
+                  $_SESSION["message"] = "User : {$user_id_to_delete} was deleted successfully !";
                   $_SESSION["msg_type"] = "success";
                 redirect("admin.php");
              }
@@ -72,7 +72,7 @@
 
     .container_box>.success {
         height: 40px;
-        width: 300px;
+        width: 500px;
         background-color: lightgreen;
         display: flex;
         align-items: center;
