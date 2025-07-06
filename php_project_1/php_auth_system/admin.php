@@ -17,13 +17,14 @@
     if(isset($_POST['edit_user'])) {
        $user_email_to_update_id = mysqli_real_escape_string($connection, $_POST['user_id']);
        //
+       $username_to_update = mysqli_real_escape_string($connection, $_POST['username']);
        if(!empty($user_email_to_update_id)){
 
         // user new email 
 
         $email_address = mysqli_real_escape_string($connection, $_POST['email']);
          // if this field is not empty
-        $sql_query = "UPDATE users SET email='$email_address' WHERE id='$user_email_to_update_id'";
+        $sql_query = "UPDATE users SET username='$username_to_update', email='$email_address' WHERE id='$user_email_to_update_id'";
         $result = mysqli_query($connection,$sql_query);
         // Fetch Associate Array
          if(check_query($result)) {
@@ -83,6 +84,7 @@
                 <td>
                     <form method="POST" style="display:inline-block;">
                         <input type="hidden" name="user_id" value="<?php echo $fetch_users['id']; ?>">
+                        <input type="text" name="username" value="<?php echo $fetch_users['username']; ?>" required>
                         <input type="email" name="email" value="<?php echo $fetch_users['email']; ?>" required>
                         <button class="edit" type="submit" name="edit_user">Edit</button>
                     </form>

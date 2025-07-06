@@ -31,9 +31,7 @@
 
                 }else {
 
-                    $results_array = mysqli_fetch_assoc($execute_query_check_user);
                     //hashing password
-
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                     $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$passwordHash')";
                     $result = mysqli_query($connection,$query);
