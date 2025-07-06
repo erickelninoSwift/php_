@@ -24,10 +24,9 @@
 
         $email_address = mysqli_real_escape_string($connection, $_POST['email']);
          // if this field is not empty
-        $sql_query = "UPDATE users SET username='$username_to_update', email='$email_address' WHERE id='$user_email_to_update_id'";
-        $result = mysqli_query($connection,$sql_query);
+        $current_query_result = update_user_selected($connection,$user_email_to_update_id,$username_to_update,$email);
         // Fetch Associate Array
-         if(check_query($result)) {
+         if(check_query( $current_query_result)) {
             //
             $_SESSION["message"] = "User : {$username_to_update} was updated successfully !";
             $_SESSION["msg_type"] = "success";
@@ -41,10 +40,9 @@
         // display the user you want to delete
         if(isset($_POST["user_id"]) && !empty($_POST["user_id"])) {
             $user_id_to_delete = $_POST['user_id'];
-            echo $user_id_to_delete;
-             $sql_delete_user_query = "DELETE FROM users WHERE id='$user_id_to_delete'";
-             $result_ = mysqli_query($connection,$sql_delete_user_query);
-             if(check_query($result_)) {
+           // delete
+              $delete_current_user = delete_user_selected($connection, $user_id_to_delete);
+             if(check_query($delete_current_user)) {
                   $_SESSION["message"] = "User : {$user_id_to_delete} was deleted successfully !";
                   $_SESSION["msg_type"] = "success";
                 redirect("admin.php");

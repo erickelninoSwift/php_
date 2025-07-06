@@ -36,3 +36,9 @@
     function format_data_format($data) {
       return date('j M D', strtotime($data));
     }
+
+    // create user
+
+    function add_new_user() {
+        
+    }

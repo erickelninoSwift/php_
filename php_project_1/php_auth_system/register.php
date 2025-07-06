@@ -30,14 +30,8 @@
                      $error = " user with email $email already exist! ";
 
                 }else {
-
-                    //hashing password
-                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$passwordHash')";
-                    $result = mysqli_query($connection,$query);
-                //
-                     
-                      if($result) {
+      
+                      if(register_user($connection,$username,$email,$password)) {
                         echo "user account was created";
                         $_SESSION['logged_in'] = (bool) true;
                         $_SESSION['username'] = $username;

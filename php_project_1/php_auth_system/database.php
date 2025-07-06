@@ -15,8 +15,6 @@ $database = "login_app";
   $connection = mysqli_connect($host, $username, $password, $database);
    if(!$connection){
     die("Connection failed". mysqli_connect_error());
-   }else{
-      echo "connected successfully";
    }
    
      // check if query is true
@@ -28,4 +26,27 @@ $database = "login_app";
       }
       return true;
     }
+
+
+    // function to regsister users
+    function register_user($conn,$username,$email,$password) {
+         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+         $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$passwordHash')";
+        $result = mysqli_query($conn,$query);
+        return $result;
+    }
+
+    //delete user
+
+    function delete_user_selected($conn, $user_id){
+         $sql_delete_user_query = "DELETE FROM users WHERE id='$user_id'";
+        return mysqli_query($conn,$sql_delete_user_query);
+     }
+
+     // fucntion to update data
+     function update_user_selected($conn, $user_id, $username, $email) {
+        $sql_query = "UPDATE users SET username='$username', email='$email' WHERE id='$user_id'";
+        $result = mysqli_query($conn,$sql_query);
+        return $result;
+     }
 ?>;
