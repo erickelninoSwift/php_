@@ -82,3 +82,11 @@ body.admin .container .notification.error {
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+body.admin .container_box {
+  display: flex;
+  flex-direction: column;
+}
+
+body.admin .container_box {
+  background-color: blue;
+}
