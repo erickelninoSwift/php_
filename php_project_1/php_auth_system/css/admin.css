@@ -86,7 +86,3 @@ body.admin .container_box {
   display: flex;
   flex-direction: column;
 }
-
-body.admin .container_box {
-  background-color: blue;
-}

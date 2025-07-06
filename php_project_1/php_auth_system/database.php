@@ -7,17 +7,18 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); 
 //
 //
-  $connection = mysqli_connect("localhost", "root", "root", "login_app");
-      if($connection) {
-   // connected
-       //
-     
-       return;
-   } else {
-       echo "". mysqli_connect_error();
+$host = "localhost";
+$username = "root";
+$password = "root";
+$database = "login_app";
+
+  $connection = mysqli_connect($host, $username, $password, $database);
+   if(!$connection){
+    die("Connection failed". mysqli_connect_error());
+   }else{
+      echo "connected successfully";
    }
    
-
      // check if query is true
 
     function check_query($query) {
