@@ -72,24 +72,22 @@
 
     .container_box>.success {
         height: 40px;
-        width: auto;
-        padding: 10px;
+        width: 300px;
         background-color: lightgreen;
         display: flex;
         align-items: center;
-        justify-content: center;
+        padding-left: 5px;
         margin-left: 230px;
         margin-bottom: 10px;
     }
 
     .container_box>.error {
         height: 40px;
-        width: auto;
-        padding: 10px;
+        width: 300px;
         background-color: lightcoral;
         display: flex;
         align-items: center;
-        justify-content: center;
+        padding-left: 5px;
         margin-left: 230px;
         margin-bottom: 10px;
     }
@@ -101,9 +99,18 @@
 
 <div class="container">
     <div class="container_box">
-        <div class="<?php echo $_SESSION['msg_type'];?>">
-            <?php echo $_SESSION['message']?>
+        <?php if(isset($_SESSION['message']) && isset($_SESSION['msg_type'])) : ?>
+        <!--  -->
+        <div class="<?php echo $_SESSION['msg_type'] ?>">
+            <?php 
+               echo $_SESSION['message'];
+               unset($_SESSION['message']);
+               unset($_SESSION['msg_type']);
+            ?>
+
         </div>
+        <!--  -->
+        <?php endif;?>
         <table class="user-table">
             <thead>
                 <tr>
