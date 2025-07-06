@@ -24,7 +24,7 @@
 
         $email_address = mysqli_real_escape_string($connection, $_POST['email']);
          // if this field is not empty
-        $current_query_result = update_user_selected($connection,$user_email_to_update_id,$username_to_update,$email);
+        $current_query_result = update_user_selected($connection,$user_email_to_update_id,$username_to_update, $email_address);
         // Fetch Associate Array
          if(check_query( $current_query_result)) {
             //
