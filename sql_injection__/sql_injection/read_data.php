@@ -1,10 +1,10 @@
 <?php 
    include "./database.php";
 
-   if($_SERVER['REQUEST_METHOD'] === 'POST') {
+   if($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['user_id']) && !empty($_POST['user_id']))) {
        $stmt = mysqli_prepare($connection_db,'SELECT id, user_name FROM users WHERE id= ?');
        if($stmt) { 
-           $id = 1;
+           $id = mysqli_real_escape_string( $connection_db, $_POST['user_id']);
            mysqli_stmt_bind_param($stmt,"i", $id);
            mysqli_stmt_execute($stmt);
 
@@ -14,6 +14,9 @@
           print_r($assoc_data['user_name']);
        }
        
+   }else {
+    //
+      echo "Make sure the user id field is not empty";
    }
 
 ?>;
@@ -32,6 +35,7 @@
 
 </body>
 <form method="POST" action="">
+    <input type="text" name="user_id" placeholder="user id" />
     <input type="submit" value="Read Data" />
 </form>
 
