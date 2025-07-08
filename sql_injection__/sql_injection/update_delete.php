@@ -17,8 +17,17 @@
      }
     }
     // delete 
+    $stmt = mysqli_prepare($connection_db, "DELETE * FROM users WHERE id=?");
     if(isset($_POST['delete'])){
-        echo "delete data";
+
+         $user_id = mysqli_real_escape_string($connection_db, $_POST['user_id']);
+        //statement to delete data
+        if(!empty($user_id)){
+            //
+              mysqli_stmt_bind_param($stmt,'scale', $user_id);
+              mysqli_stmt_execute($stmt);
+              header("location: update_delete.php");
+        }
     }
     
    } 
