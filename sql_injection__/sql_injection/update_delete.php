@@ -17,15 +17,16 @@
      }
     }
     // delete 
-    $stmt = mysqli_prepare($connection_db, "DELETE * FROM users WHERE id=?");
-    if(isset($_POST['delete'])){
-
+    $stmt_2 = mysqli_prepare($connection_db, "DELETE FROM users WHERE id=?");
+    // 
+    if(isset($_POST['delete']) && isset($stmt_2)){
+        
          $user_id = mysqli_real_escape_string($connection_db, $_POST['user_id']);
         //statement to delete data
         if(!empty($user_id)){
             //
-              mysqli_stmt_bind_param($stmt,'scale', $user_id);
-              mysqli_stmt_execute($stmt);
+              mysqli_stmt_bind_param($stmt_2,'i', $user_id);
+              mysqli_stmt_execute($stmt_2);
               header("location: update_delete.php");
         }
     }
