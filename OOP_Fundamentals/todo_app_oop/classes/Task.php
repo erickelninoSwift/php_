@@ -7,9 +7,8 @@ class Task {
     public $task_name;
 
 
-    public function __construct($db_connection, $task_name) {
+    public function __construct($db_connection) {
         $this->connection = $db_connection;
-        $this->task_name = $task_name;
     }
 
     public function create_task (){
@@ -24,6 +23,16 @@ class Task {
         $stmt->bind_param("s" ,$this->task_name);
         $results = $stmt->execute();
        
+        return $results;
+    }
+
+    public function read_task () {
+      
+        //
+        $query = "SELECT * FROM ". $this->table;
+        $stmt = $this->connection->query($query);
+        //
+        $results = mysqli_fetch_assoc($stmt);
         return $results;
     }
 

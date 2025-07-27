@@ -6,12 +6,16 @@
   $database = new Database();
 
   $db_connection = $database->getConnection();
+  $new_user_task = new Task($db_connection);
 
+  $all_tasks = [];
   if($_SERVER['REQUEST_METHOD'] === 'POST') {
     //
+  
+
      if(isset($_POST['add_task']) && isset($_POST['task'])){
         $current_task = trim($_POST['task']);
-        $new_user_task = new Task($db_connection, $current_task);
+        $new_user_task->task_name = $current_task;
         $resutl = $new_user_task->create_task();
         if($resutl === 1) {
             header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
@@ -34,7 +38,9 @@
      //
   }
 
-   
+  // fetch all tasks
+  $new_user_task->read_task();
+
 ?>
 
 
