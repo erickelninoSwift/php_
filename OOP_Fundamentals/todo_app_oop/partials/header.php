@@ -7,3 +7,10 @@
     <title>Modern Todo App</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
+<body>
+
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Todo App</h1>
