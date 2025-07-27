@@ -1,25 +1,32 @@
 <?php include "./partials/header.php"; ?>
 <?php include "./partials/notifications.php"; ?>
 <?php include "./config/Database.php"; 
+      include "./classes/Task.php";
   
   $database = new Database();
 
   $db_connection = $database->getConnection();
 
-  if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_task'])) {
-     echo 'add task';
-  }
-  if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_task'])) {
-     echo 'complete task';
+  if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //
+     if(isset($_POST['add_task'])){
+        
+     }
+     //
+     if(isset($_POST['complete_task'])){
+        
+     }
+     //
+     if(isset($_POST['undo_complete_task'])){
+        
+     }
+     //
+     if(isset($_POST['delete_task'])){
+        
+     }
+     //
   }
 
-  if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['undo_complete_task'])) {
-     echo 'undo task';
-  }
-
-  if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_task'])) {
-     echo 'delete task';
-  }
    
 ?>
 
