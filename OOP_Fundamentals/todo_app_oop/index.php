@@ -39,8 +39,7 @@
   }
 
   // fetch all tasks
-  $new_user_task->read_task();
-
+  $my_tasks = $new_user_task->read_task();
 ?>
 
 
@@ -52,8 +51,32 @@
 
 <!-- Display Tasks -->
 <ul>
+
+    <?php while($taskS_fetched = $my_tasks->fetch_assoc()): ?>
+    <?php if($taskS_fetched['is_completed'] !== 1): ?>
+    <li>
+        <span
+            class="<?php echo $taskS_fetched['is_completed'] === 1 ? 'completed' : ''?>"><?php echo $taskS_fetched['task'];?></span>
+        <div>
+            <!-- Complete Task -->
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="2">
+                <button class="complete" type="submit" name="complete_task">Complete</button>
+            </form>
+
+            <!-- Delete Task -->
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="2">
+                <button class="delete" type="submit" name="delete_task">Delete</button>
+            </form>
+        </div>
+    </li>
+    <?php endif; ?>
+    <?php if($taskS_fetched['is_completed'] === 1): ?>
     <li class="completed">
-        <span class="completed">Sample Task</span>
+
+        <span
+            class="<?php echo $taskS_fetched['is_completed'] === 1 ? 'completed' : ''?>"><?php echo $taskS_fetched['task'];?></span>
         <div>
             <!-- Complete Task -->
             <form method="POST" style="display:inline;">
@@ -74,22 +97,7 @@
             </form>
         </div>
     </li>
-
-    <li>
-        <span>Another Task</span>
-        <div>
-            <!-- Complete Task -->
-            <form method="POST" style="display:inline;">
-                <input type="hidden" name="id" value="2">
-                <button class="complete" type="submit" name="complete_task">Complete</button>
-            </form>
-
-            <!-- Delete Task -->
-            <form method="POST" style="display:inline;">
-                <input type="hidden" name="id" value="2">
-                <button class="delete" type="submit" name="delete_task">Delete</button>
-            </form>
-        </div>
-    </li>
+    <?php endif; ?>
+    <?php endwhile; ?>
 </ul>
 <?php include "./partials/footer.php" ?>

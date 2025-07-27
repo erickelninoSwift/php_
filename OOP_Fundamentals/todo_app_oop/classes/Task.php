@@ -30,9 +30,8 @@ class Task {
       
         //
         $query = "SELECT * FROM ". $this->table;
-        $stmt = $this->connection->query($query);
+        $results = mysqli_query($this->connection, $query);
         //
-        $results = mysqli_fetch_assoc($stmt);
         return $results;
     }
 
