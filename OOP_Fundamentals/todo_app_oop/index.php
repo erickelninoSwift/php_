@@ -25,7 +25,7 @@
      }
      //
      if(isset($_POST['complete_task'])){
-        
+        echo $_POST['id'];
      }
      //
      if(isset($_POST['undo_complete_task'])){
@@ -37,10 +37,11 @@
      }
      //
   }
-
   // fetch all tasks
   $my_tasks = $new_user_task->read_task();
   $results_fetched = $my_tasks->fetch_all();
+
+
 ?>
 
 
@@ -60,20 +61,21 @@
         <div>
             <!-- Complete Task -->
             <form method="POST" style="display:inline;">
-                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="id" value="<?php echo $task[0]; ?>">
                 <button class="complete" type="submit" name="complete_task">Complete</button>
             </form>
+
             <!-- Undo Completed Task -->
             <?php if((int)$task[2] === 1): ?>
             <form method="POST" style="display:inline;">
-                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="id" value="<?php echo $task[0]; ?>">
                 <button class="undo" type="submit" name="undo_complete_task">Undo</button>
             </form>
             <?php endif; ?>
 
             <!-- Delete Task -->
             <form method="POST" style="display:inline;">
-                <input type="hidden" name="id" value="1">
+                <input type="hidden" name="id" value="<?php echo $task[0]; ?>">
                 <button class="delete" type="submit" name="delete_task">Delete</button>
             </form>
         </div>
