@@ -37,7 +37,7 @@ class Task {
 
     public function complete_task ($id) {
       $completed_value = 1;
-       $query = "UPDATE" . $this->table . " SET is_completed = ? WHERE id = ?";
+       $query = "UPDATE " . $this->table . " SET is_completed = ? WHERE id = ?";
        $stmt = mysqli_prepare($this->connection,query: $query);
        $stmt->bind_param("ii", $completed_value, $id);
        $stmt->execute();
@@ -45,5 +45,16 @@ class Task {
         return $stmt->affected_rows > 0; // Return true if the task was updated
        
     }
+    public function undo_complete_task ($id) {
+        $completed_value = 0;
+        $query = "UPDATE " . $this->table . " SET is_completed = ? WHERE id = ?";
+        $stmt = mysqli_prepare($this->connection,query: $query);
+        $stmt->bind_param("ii", $completed_value, $id);
+        $stmt->execute();
+        
+        return $stmt->affected_rows > 0; // Return true if the task was updated
+    }
+    
+    
 
 }

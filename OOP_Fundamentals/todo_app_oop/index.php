@@ -25,10 +25,22 @@
      }
      //
      if(isset($_POST['complete_task'])){
-        echo $_POST['id'];
+        $task_id = trim($_POST['id']);
+        if($new_user_task->complete_task($task_id)){
+            header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
+            unset($_POST['complete_task']);
+            $_POST['id'] = '';  
+        }
      }
      //
      if(isset($_POST['undo_complete_task'])){
+        $task_id = trim($_POST['id']);
+        //
+         if($new_user_task->undo_complete_task($task_id)){
+            header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
+            unset($_POST['complete_task']);
+            $_POST['id'] = '';  
+        }
         
      }
      //
