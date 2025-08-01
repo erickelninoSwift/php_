@@ -55,6 +55,13 @@ class Task {
         return $stmt->affected_rows > 0; // Return true if the task was updated
     }
     
-    
+    public function delete_task($id) {
+        
+        $query = "DELETE FROM " . $this->table . " WHERE id = ?";
+        $stmt = mysqli_prepare($this->connection,$query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->affected_rows > 0; // Return true if the task was deleted
+    }
 
 }

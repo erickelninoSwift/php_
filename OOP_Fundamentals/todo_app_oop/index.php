@@ -45,7 +45,11 @@
      }
      //
      if(isset($_POST['delete_task'])){
-        
+        $task_id = trim($_POST['id']);
+        $new_user_task->delete_task($task_id);
+        header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
+        unset($_POST['delete_task']);
+        $_POST['id'] = '';
      }
      //
   }
