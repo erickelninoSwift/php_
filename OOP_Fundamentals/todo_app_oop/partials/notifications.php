@@ -1,6 +1,8 @@
    <!-- Notification Container -->
+
    <?php if(isset($_SESSION['message'])): ?>
-   <div class="notification-container" style="margin-top: 120px;">
+   <div class="notification-container <?php  echo isset($_SESSION['message']) ?  " show" : "" ?>"
+       style="margin-top: 120px;">
        <div class="notification success">
            <!-- Success message will go here -->
            <?php if(isset($_SESSION['message'])): ?>

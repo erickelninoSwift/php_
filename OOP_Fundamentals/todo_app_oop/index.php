@@ -96,7 +96,7 @@
             <?php endif; ?>
 
             <!-- Delete Task -->
-            <form method="POST" style="display:inline;">
+            <form onsubmit="return confirmDelete()" method="POST" style="display:inline;">
                 <input type="hidden" name="id" value="<?php echo $task[0]; ?>">
                 <button class="delete" type="submit" name="delete_task">Delete</button>
             </form>
@@ -104,4 +104,9 @@
     </li>
     <?php endforeach; ?>
 </ul>
+<script>
+function confirmDelete() {
+    return confirm("Are you sure you want to delete this task?");
+}
+</script>
 <?php include "./partials/footer.php" ?>
