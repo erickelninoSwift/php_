@@ -2,7 +2,7 @@
 <?php include "./partials/notifications.php"; ?>
 <?php include "./config/Database.php"; 
       include "./classes/Task.php";
-  
+
   $database = new Database();
 
   $db_connection = $database->getConnection();
@@ -13,23 +13,26 @@
     //
   
 
-     if(isset($_POST['add_task']) && isset($_POST['task'])){
+     if(isset($_POST['add_task'])){
         $current_task = trim($_POST['task']);
         $new_user_task->task_name = $current_task;
-        $resutl = $new_user_task->create_task();
-        if($resutl === 1) {
+
+        if($resutl = $new_user_task->create_task()) {
+            $_SESSION['message'] = "Task Created Successfully";
             header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
-            $_POST['task'] = '';
-            unset($_POST['add_task']);
+             unset($_POST['add_task']);
+             $_POST['add_task'] = '';
+            
         }
      }
      //
      if(isset($_POST['complete_task'])){
         $task_id = trim($_POST['id']);
         if($new_user_task->complete_task($task_id)){
+            $_SESSION['message'] = "Task Completed Successfully";
             header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
             unset($_POST['complete_task']);
-            $_POST['id'] = '';  
+           $_POST['complete_task'] = '';
         }
      }
      //
@@ -37,9 +40,10 @@
         $task_id = trim($_POST['id']);
         //
          if($new_user_task->undo_complete_task($task_id)){
+            $_SESSION['message'] = "Task re-activated Successfully";
             header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
-            unset($_POST['complete_task']);
-            $_POST['id'] = '';  
+            unset($_POST['undo_complete_task']);
+            $_POST['undo_complete_task'] = '';
         }
         
      }
@@ -47,9 +51,11 @@
      if(isset($_POST['delete_task'])){
         $task_id = trim($_POST['id']);
         $new_user_task->delete_task($task_id);
+        $_SESSION['message'] = "Task deleted Successfully!";
         header("location: http://localhost:8888/php_basics/OOP_Fundamentals/todo_app_oop/index.php");
         unset($_POST['delete_task']);
-        $_POST['id'] = '';
+        $_POST['delete_task'] = '';
+    
      }
      //
   }
@@ -59,7 +65,6 @@
 
 
 ?>
-
 
 <!-- Add Task Form -->
 <form method="POST" style="margin-top:100px">
@@ -76,11 +81,12 @@
         <span class="<?php echo (int) $task[2] === 1 ? 'completed' : ''?>"><?php echo $task[1];?></span>
         <div>
             <!-- Complete Task -->
+            <?php if((int)$task[2] === 0): ?>
             <form method="POST" style="display:inline;">
                 <input type="hidden" name="id" value="<?php echo $task[0]; ?>">
                 <button class="complete" type="submit" name="complete_task">Complete</button>
             </form>
-
+            <?php endif; ?>
             <!-- Undo Completed Task -->
             <?php if((int)$task[2] === 1): ?>
             <form method="POST" style="display:inline;">
